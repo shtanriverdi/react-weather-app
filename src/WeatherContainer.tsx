@@ -19,9 +19,10 @@ function WeatherContainer() {
         mb-5">
           <input
             className="bg-orange-300 hover:bg-orange-200 focus:outline-none focus:ring focus:ring-orange-500 focus:bg-orange-200 placeholder:text-slate-600 rounded-3xl w-full p-5 "
-            placeholder="Search for any city"
+            placeholder="New York, California, Ankara..."
             type="text"
             name="search"
+            value=""
           />
         </div>
       </form>
