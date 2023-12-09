@@ -1,16 +1,10 @@
 import WeatherContainer from "./WeatherContainer";
+import NavBar from "./NavBar";
 
 export default function App() {
   return (
-    <div
-      className="
-        h-screen
-        flex
-        justify-center
-        items-center
-        bg-gradient-to-tr
-        from-blue-400
-        to-sky-300">
+    <div className="flex flex-col h-screen">
+      <NavBar />
       <WeatherContainer />
     </div>
   );

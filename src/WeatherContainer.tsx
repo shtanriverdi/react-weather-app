@@ -8,12 +8,19 @@ function WeatherContainer() {
     setSearchText(() => newValue);
   };
 
-  const onFormSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 
   return (
-    <div>
+    <div
+    className="
+      flex-1
+      justify-center
+      items-center
+      bg-gradient-to-tr
+      from-blue-400
+      to-sky-300">
       <h1 className="text-5xl drop-shadow-xl text-center select-none text-white mb-5">
         Weather Cast App
       </h1>
@@ -44,7 +51,10 @@ function WeatherContainer() {
       </form>
 
       <div className="bg-orange-300 rounded-3xl shadow-lg h-[300px] w-[500px]">
-        <h1 className="text-4xl drop-shadow-xl text-center">30°C</h1>
+        <h1 className="text-5xl text-gray-800 drop-shadow-xl text-center">30°C</h1>
+        <h1 className="text-4xl drop-shadow-xl text-center">
+          Search: {searchText.toUpperCase()}
+        </h1>
       </div>
     </div>
   );
