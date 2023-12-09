@@ -12,6 +12,10 @@ function WeatherContainer() {
     event.preventDefault();
   };
 
+  const onClearBtnPressed = () => {
+    setSearchText(() => "");
+  }
+
   return (
     <div
       className="
@@ -63,7 +67,7 @@ function WeatherContainer() {
               </div>
             </div>
 
-            <div className="flex basis-20" title="Clear Search">
+            <div onClick={onClearBtnPressed} className="flex basis-20" title="Clear Search">
               <div className="flex justify-center items-center w-full shadow-lg rounded-full bg-red-300 hover:bg-red-200 active:bg-red-400 cursor-pointer">
                 <svg width="16" height="16" fill="black" viewBox="0 0 16 16">
                   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
