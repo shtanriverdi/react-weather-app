@@ -1,7 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+const API_KEY = import.meta.env.API_KEY;
+
+function initializeState() {
+  return {
+    icon: "",
+    degree: "",
+    city: "",
+    country: "",
+    description: "",
+    feelsLike: "",
+    windSpeed: "",
+    humidity: ""
+  };
+}
 
 function WeatherContainer() {
+  const cityName = "Ankara";
+  const URL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`;
+
   const [searchText, setSearchText] = useState("");
+  
+  const [weatherData, setWeatherData] = useState(initializeState);
 
   const onSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue: string = event.target.value;
@@ -14,23 +33,25 @@ function WeatherContainer() {
 
   const onClearBtnPressed = () => {
     setSearchText(() => "");
-  }
+  };
+
+  const onSearch = () => {
+    console.log("Search value: ", searchText);
+    setSearchText(() => "");
+  };
+
+  // useEffect(() => {
+  //   // Call the Weather API
+  //   async function getWeatherData() {
+
+  //   }
+
+  //   getWeatherData();
+  // }, []);
 
   return (
-    <div
-      className="
-      flex-1
-      bg-gradient-to-tr
-      from-blue-400
-      to-sky-300">
-      <div
-        className="
-        flex
-        flex-col
-        justify-center
-        items-center
-        mt-[150px]
-        ">
+    <div className="flex-1 bg-gradient-to-tr from-blue-200 to-sky-400">
+      <div className="flex flex-col justify-center items-center mt-5">
         <h1 className="text-5xl drop-shadow-xl text-center select-none text-white mb-5">
           Weather Cast App
         </h1>
@@ -38,6 +59,7 @@ function WeatherContainer() {
         <form onSubmit={onFormSubmit}>
           <div
             className="
+            bg-blend-saturation
             w-[600px]
             flex
             flex-row
@@ -53,7 +75,10 @@ function WeatherContainer() {
               />
             </div>
 
-            <div className="flex basis-1/4" title="Search Button">
+            <div
+              onClick={onSearch}
+              className="flex basis-1/4"
+              title="Search Button">
               <div className="flex flex-row justify-center items-center w-full bg-orange-300 hover:bg-orange-200 active:bg-orange-400 shadow-lg rounded-full mx-2 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +92,10 @@ function WeatherContainer() {
               </div>
             </div>
 
-            <div onClick={onClearBtnPressed} className="flex basis-20" title="Clear Search">
+            <div
+              onClick={onClearBtnPressed}
+              className="flex basis-20"
+              title="Clear Search">
               <div className="flex justify-center items-center w-full shadow-lg rounded-full bg-red-300 hover:bg-red-200 active:bg-red-400 cursor-pointer">
                 <svg width="16" height="16" fill="black" viewBox="0 0 16 16">
                   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
@@ -78,13 +106,28 @@ function WeatherContainer() {
           </div>
         </form>
 
-        <div className="bg-orange-300 rounded-3xl shadow-lg h-[400px] w-[600px]">
-          <h1 className="text-5xl text-gray-800 drop-shadow-xl text-center">
+        <div
+          className="bg-orange-300
+          flex
+          flex-col
+          items-center
+          rounded-3xl
+          shadow-lg
+          h-[500px]
+          w-[600px]">
+          <div>
+            <img className="w-[150px] h-[150px]" src="./public/cloud.png" />
+          </div>
+          <h1 className="mb-5 text-3xl text-gray-800 drop-shadow-xl text-center">
             30°C
           </h1>
-          <h1 className="text-4xl drop-shadow-xl text-center">
-            Search: {searchText.toUpperCase()}
+          <h1 className="mb-5 text-3xl drop-shadow-xl text-center">
+            City: {searchText.toUpperCase()}
           </h1>
+          <h1 className="mb-5 text-3xl text-gray-800 drop-shadow-xl text-center">
+            {searchText.toUpperCase()}
+          </h1>
+          <p>Rainy</p>
         </div>
       </div>
     </div>
